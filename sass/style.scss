@@ -1,0 +1,71 @@
+@mixin flex-center {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+body {
+  background-color:#222;
+  color:#fff;
+}
+.row {
+  display:flex;
+  flex-direction: row;
+}
+header {
+  text-align:center;
+
+  .header__title {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    font-size:3em;
+  }
+}
+.game__container {
+  width:100%;
+  height:500px;
+  border:1px solid red;
+
+  .player-1 {
+    display:flex;
+    width:600px;
+    height:150px;
+
+    .stone-1 {
+      width:200px;
+      height:50px;
+      background-color:#2e5266;
+      margin:20px;
+    }
+
+    .scissors-1 {
+      @extend .stone-1;
+    }
+
+    .paper-1 {
+      @extend .stone-1;
+    }
+  }
+  .player-2 {
+    text-align: center;
+    width:50%;
+    }
+    .choice {
+      width:100%;
+      @include flex-center ;
+      flex-direction: row;
+    }
+    .stone-2 {
+
+      width:200px;
+      height:50px;
+      background-color: #d3d0cb;
+      margin:20px;
+    }
+    .scissors-2 {
+      @extend .stone-2;
+    }
+
+    .paper-2 {
+      @extend .stone-2;
+    }
+  }

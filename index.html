@@ -8,29 +8,39 @@
     <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <title>Kamien papier nozyce!</title>
-    <script src="script.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
   </head>
   <body>
     <header>
       <h1 class="header__title">Kamień, papier, nożyce!</h1>
+      <div id="output" class="score">Wynik</div>
     </header>
-    <main class="game__container">
-      <section class="player-1">
-        <h1 class="player-1__name">Gracz 1</h1>
-        <div class="stone-1">Kamień</div>
-        <div class="scissors-1">Nożyczki</div>
-        <div class="paper-1">Papier</div>
-      </section>
-      <!---->
-      <section class="player-2">
-        <h1 class="player-2__name">Gracz 2</h1>
-        <div class="choice">
-          <div class="stone-2">Kamień</div>
-          <div class="scissors-2">Nożyczki</div>
-          <div class="paper-2">Papier</div>
-        </div>
-      </section>
-    </main>
+    <div class="row">
+      <div class="col-6">
+        <main class="game__container">
+          <section class="player-1">
+            <h1 class="player-1__name">Gracz 1</h1>
+            <div class="choice">
+              <div id="player1Rock" class="stone-1">Kamień</div>
+              <div id="player1Scissors" class="scissors-1">Nożyczki</div>
+              <div id="player1Paper" class="paper-1">Papier</div>
+            </div>
+          </section>
+        </main>
+      </div>
+        <!---->
+      <div class="col-6">
+        <main class="game__container">
+          <section class="player-2">
+            <h1 class="player-2__name">Komputer</h1>
+            <div class="choice">
+              <div class="stone-2">Kamień</div>
+              <div class="scissors-2">Nożyczki</div>
+              <div class="paper-2">Papier</div>
+            </div>
+          </section>
+        </main>
+    </div>
+    <script src="js/script.js"></script>
   </body>
 </html>

@@ -12,8 +12,22 @@
   <body>
     <header>
       <h1 class="header__title">Kamień, papier, nożyce!</h1>
-      <div id="output" class="score">Wynik</div>
-      <div id="scoreTable" class="score__whowin"></div>
+      <div id="output" class="score">Kto wygrał runde?</div>
+
+      <div class="row">
+        <div class="col-6">
+          <div id="compOutput" class="score__comp">Komputer:</div>
+        </div>
+        <div class="col-6">
+          <div id="playerOutput" class="score__player">Gracz</div>
+        </div>
+      </div>
+
+      <div id="StartGame" class="game__start">
+        <h1 class="game__start__title"> Start game! </h1>
+        <button id="StartButton" class="game__start__button">Start!</button>
+      </div>
+
     </header>
     <div class="row">
       <div class="col-6">

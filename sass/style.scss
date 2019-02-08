@@ -16,6 +16,7 @@ body {
 .row {
   display:flex;
   flex-direction: row;
+  width:100%;
 }
 header {
   @include flex-center;
@@ -23,6 +24,9 @@ header {
   .header__title {
     font-family: 'ZCOOL KuaiLe', cursive;
     font-size:3em;
+  }
+  .col-6 {
+    @include flex-center;
   }
   .score {
     width:200px;
@@ -35,6 +39,12 @@ header {
     @extend .score;
     border-top:2px solid #222;
     color:#222;
+  }
+  .score__comp {
+    @extend .score;
+  }
+  .score__player {
+    @extend .score;
   }
 }
 .game__container {

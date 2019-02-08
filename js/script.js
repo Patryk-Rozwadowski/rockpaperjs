@@ -29,6 +29,7 @@ var playerPickPaper = document.getElementById("player1Paper");
     scoreOutput.innerHTML = "Wygrywa gracz";
     playerOutput.innerHTML = "Gracz: " + playerScore;
   }
+  won();
 };
 
 //////////////////////////////
@@ -39,10 +40,10 @@ var playerPickPaper = document.getElementById("player1Paper");
   var playerWon = 10;
   var compWon = 10;
 
-  if (playerScore = playerWon ) {
+  if (playerScore == 10 ) {
     scoreOutput.innerHTML = "Wygrałeś!";
   }
-  else if (compScore = compWon ) {
+  else if (compScore == compWon ) {
     scoreOutput.innerHTML = "Przegrałeś! :(";
   }
 

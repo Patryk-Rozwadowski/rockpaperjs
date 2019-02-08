@@ -37,13 +37,10 @@ var playerPickPaper = document.getElementById("player1Paper");
 //////////////////////////////
   function won() {
 
-  var playerWon = 10;
-  var compWon = 10;
-
   if (playerScore == 10 ) {
     scoreOutput.innerHTML = "Wygrałeś!";
   }
-  else if (compScore == compWon ) {
+  else if (compScore == 10 ) {
     scoreOutput.innerHTML = "Przegrałeś! :(";
   }
 

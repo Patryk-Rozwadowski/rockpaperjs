@@ -3,9 +3,11 @@
 var scoreOutput = document.getElementById("output");
 var compOutput = document.getElementById("compOutput");
 var playerOutput = document.getElementById("playerOutput");
+var roundCount;
+var endGame = false;
 var playerScore = 0;
 var compScore = 0;
-var roundCount;
+
 
 var playerPickRock = document.getElementById("player1Rock");
 var playerPickScissors = document.getElementById("player1Scissors");
@@ -13,31 +15,28 @@ var playerPickPaper = document.getElementById("player1Paper");
 var startNewGame = document.getElementById("StartButton");
 
 
-
-
 ///////////////////////
 // START GAME ////////
 /////////////////////
+  startNewGame.addEventListener('click', function() {
+  playerScore = 0;
+  compScore = 0;
 
-startNewGame.addEventListener('click', function() {
-  var playerScore = 0;
-  var compScore = 0;
-
-scoreOutput.innerHTML = "Nowa gra rozpoczęta!";
-playerOutput.innerHTML = "Nowa gra!";
-compOutput.innerHTML = "Nowa gra!";
-
+  playerOutput.innerHTML = playerScore;
+  compOutput.innerHTML =  compScore;
+  roundCount = window.prompt("Podaj ilość rund");
+  scoreOutput.innerHTML = "Nowa gra rozpoczęta!";
 });
-roundCount = window.prompt("Podaj ilość rund");
 /////////////////////////////////////////
 //  Funkcja dotycząca kto zdobył punkt  + funkcja na to kto wygral mecz//
 ////////////////////////////////////////
   function playerPick(playerPick, comp) {
   var comp = compMove();
-  if (playerPick === comp) {
+
+  if (playerPick == comp) {
     scoreOutput.innerHTML = "Draw";
   }
-  else if (playerPick === 'rock' && comp === 'paper' || playerPick === "scissors" && comp === "rock" || playerPick === "rock" && comp === "paper") {
+  else if (playerPick == 'rock' && comp == 'paper' || playerPick == "scissors" && comp == "rock" || playerPick == "rock" && comp == "paper") {
     compScore++;
     scoreOutput.innerHTML = "Wygrywa komputer";
     compOutput.innerHTML = "Komputer: " + compScore;
@@ -47,8 +46,8 @@ roundCount = window.prompt("Podaj ilość rund");
     scoreOutput.innerHTML = "Wygrywa gracz";
     playerOutput.innerHTML = "Gracz: " + playerScore;
   }
-  won();
 };
+
 
 //////////////////////////////
 //  Funkcja dotycząca kto wygrał  //
@@ -56,11 +55,36 @@ roundCount = window.prompt("Podaj ilość rund");
   function won() {
 
   if (playerScore == roundCount ) {
-    scoreOutput.innerHTML = "Wygrałeś!";
+
+    scoreOutput.innerHTML = "Wygrałeś! :)";
+    playerPickRock.removeEventListener('click', function() {
+      playerPick('rock');
+    });
+
+    playerPickScissors.removeEventListener('click', function(){
+      playerPick('scissors');
+    });
+
+    playerPickPaper.removeEventListener('click', function() {
+      playerPick('paper');
+    });
   }
   else if (compScore == roundCount ) {
+
     scoreOutput.innerHTML = "Przegrałeś! :(";
+    playerPickRock.removeEventListener('click', function() {
+      playerPick('rock');
+    });
+
+    playerPickScissors.removeEventListener('click', function(){
+      playerPick('scissors');
+    });
+
+    playerPickPaper.removeEventListener('click', function() {
+      playerPick('paper');
+    });
   }
+
 }
 /////////////////////////////////
 // Deklaracja ruchu gracza /////

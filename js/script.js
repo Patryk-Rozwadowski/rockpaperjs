@@ -16,7 +16,6 @@ var startNewGame = document.getElementById("StartButton");
 ////////////////////
 
 
-
 /////////////////////////////////////////
 //  Funkcja dotycząca kto zdobył punkt  + funkcja na to kto wygral mecz//
 ////////////////////////////////////////
@@ -66,13 +65,14 @@ playerPickPaper.addEventListener('click', function() {
 });
 
 startNewGame.addEventListener('click', function() {
-  var playerScore = 0;
-  var compScore = 0;
+  playerScore = 0;
+  compScore = 0;
 
   scoreOutput.innerHTML = "Nowa gra rozpoczęta!";
   playerOutput.innerHTML = "Nowa gra! Zaczynamy od: " + playerScore;
   compOutput.innerHTML = "Nowa gra! Zaczynamy od: " + compScore;
 });
+
 ///////////////////////////////
 // Losuje ruch dla komputerar ///
 //////////////////////////////

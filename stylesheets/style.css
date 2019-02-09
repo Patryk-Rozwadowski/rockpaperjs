@@ -18,13 +18,13 @@ header .score__whowin { color: #222; }
 
 .game__container .player-1 { text-align: center; }
 
-.game__container .stone-1, .game__container .scissors-1, .game__container .paper-1 { width: 200px; height: 50px; background-color: #2e5266; margin: 20px; }
+.game__container .stone-1, .game__container .scissors-1, .game__container .paper-1 { width: 200px; height: 50px; background-color: #2e5266; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; margin: 20px; border-radius: 10%; }
 
 .player-2 { text-align: center; }
 
 .choice { width: 100%; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; -ms-flex-direction: row; flex-direction: row; }
 
-.stone-2, .scissors-2, .paper-2 { width: 200px; height: 50px; background-color: #d3d0cb; margin: 20px; }
+.stone-2, .scissors-2, .paper-2 { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; color: #222; border-radius: 10%; width: 200px; height: 50px; background-color: #d3d0cb; margin: 20px; }
 
 .game__start { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; }
 

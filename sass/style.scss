@@ -60,7 +60,9 @@ header {
     width:200px;
     height:50px;
     background-color:#2e5266;
+    @include flex-center;
     margin:20px;
+    border-radius:10%;
   }
 
   .scissors-1 {
@@ -80,10 +82,14 @@ header {
   flex-direction: row;
 }
 .stone-2 {
+  @include flex-center;
+  color:#222;
+  border-radius:10%;
   width:200px;
   height:50px;
   background-color: #d3d0cb;
   margin:20px;
+
 }
 .scissors-2 {
   @extend .stone-2;

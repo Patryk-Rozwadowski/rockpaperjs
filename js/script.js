@@ -9,10 +9,16 @@ var compScore = 0;
 var playerPickRock = document.getElementById("player1Rock");
 var playerPickScissors = document.getElementById("player1Scissors");
 var playerPickPaper = document.getElementById("player1Paper");
+var startNewGame = document.getElementById("StartButton");
+
+////////////////////
+// START GAME //
+////////////////////
+
 
 
 /////////////////////////////////////////
-//  Funkcja dotycząca kto zdobył punkt  //
+//  Funkcja dotycząca kto zdobył punkt  + funkcja na to kto wygral mecz//
 ////////////////////////////////////////
   function playerPick(playerPick, comp) {
   var comp = compMove();
@@ -43,8 +49,6 @@ var playerPickPaper = document.getElementById("player1Paper");
   else if (compScore == 10 ) {
     scoreOutput.innerHTML = "Przegrałeś! :(";
   }
-
-
 }
 /////////////////////////////////
 // Deklaracja ruchu gracza /////
@@ -59,6 +63,15 @@ playerPickScissors.addEventListener('click', function(){
 
 playerPickPaper.addEventListener('click', function() {
   playerPick('paper');
+});
+
+startNewGame.addEventListener('click', function() {
+  var playerScore = 0;
+  var compScore = 0;
+
+  scoreOutput.innerHTML = "Nowa gra rozpoczęta!";
+  playerOutput.innerHTML = "Nowa gra! Zaczynamy od: " + playerScore;
+  compOutput.innerHTML = "Nowa gra! Zaczynamy od: " + compScore;
 });
 ///////////////////////////////
 // Losuje ruch dla komputerar ///

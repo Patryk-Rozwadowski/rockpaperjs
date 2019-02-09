@@ -16,6 +16,7 @@ body {
 .row {
   display:flex;
   flex-direction: row;
+  justify-content: center;
   width:100%;
 }
 header {
@@ -37,7 +38,6 @@ header {
   }
   .score__whowin {
     @extend .score;
-    border-top:2px solid #222;
     color:#222;
   }
   .score__comp {
@@ -51,46 +51,56 @@ header {
   @include flex-center;
   width:100%;
   height:500px;
-  border:1px solid red;
 
   .player-1 {
     text-align: center;
   }
 
-    .stone-1 {
-      width:200px;
-      height:50px;
-      background-color:#2e5266;
-      margin:20px;
-    }
-
-    .scissors-1 {
-      @extend .stone-1;
-    }
-
-    .paper-1 {
-      @extend .stone-1;
-    }
-  }
-.player-2 {
-  text-align: center;
-  }
-  .choice {
-    width:100%;
-    @include flex-center ;
-    flex-direction: row;
-  }
-  .stone-2 {
-
+  .stone-1 {
     width:200px;
     height:50px;
-    background-color: #d3d0cb;
+    background-color:#2e5266;
     margin:20px;
   }
-  .scissors-2 {
-    @extend .stone-2;
+
+  .scissors-1 {
+    @extend .stone-1;
   }
 
-  .paper-2 {
-    @extend .stone-2;
+  .paper-1 {
+    @extend .stone-1;
   }
+}
+.player-2 {
+  text-align: center;
+}
+.choice {
+  width:100%;
+  @include flex-center ;
+  flex-direction: row;
+}
+.stone-2 {
+  width:200px;
+  height:50px;
+  background-color: #d3d0cb;
+  margin:20px;
+}
+.scissors-2 {
+  @extend .stone-2;
+}
+
+.paper-2 {
+  @extend .stone-2;
+}
+
+.game__start {
+  @include flex-center;
+
+  .game__start__button {
+    width:300px;
+    height:200px;
+    background-color: #2e5266;
+    color:#fff;
+    font-size:3em;
+  }
+}

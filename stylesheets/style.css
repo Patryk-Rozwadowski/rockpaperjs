@@ -2,7 +2,7 @@
 
 body { background-color: #222; color: #fff; }
 
-.row { display: -ms-flexbox; display: flex; -ms-flex-direction: row; flex-direction: row; width: 100%; }
+.row { display: -ms-flexbox; display: flex; -ms-flex-direction: row; flex-direction: row; -ms-flex-pack: center; justify-content: center; width: 100%; }
 
 header { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; -ms-flex-direction: column; flex-direction: column; }
 
@@ -12,9 +12,9 @@ header .col-6 { display: -ms-flexbox; display: flex; -ms-flex-pack: center; just
 
 header .score, header .score__whowin, header .score__comp, header .score__player { width: 200px; height: 50px; background-color: #fff; color: #222; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; }
 
-header .score__whowin { border-top: 2px solid #222; color: #222; }
+header .score__whowin { color: #222; }
 
-.game__container { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; width: 100%; height: 500px; border: 1px solid red; }
+.game__container { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; width: 100%; height: 500px; }
 
 .game__container .player-1 { text-align: center; }
 
@@ -25,3 +25,7 @@ header .score__whowin { border-top: 2px solid #222; color: #222; }
 .choice { width: 100%; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; -ms-flex-direction: row; flex-direction: row; }
 
 .stone-2, .scissors-2, .paper-2 { width: 200px; height: 50px; background-color: #d3d0cb; margin: 20px; }
+
+.game__start { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; }
+
+.game__start .game__start__button { width: 300px; height: 200px; background-color: #2e5266; color: #fff; font-size: 3em; }

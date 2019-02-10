@@ -43,8 +43,14 @@ header {
   .score__comp {
     @extend .score;
   }
+  .scoreleft__comp {
+    @extend .score__comp;
+  }
   .score__player {
     @extend .score;
+  }
+  .scoreleft__player {
+    @extend .score__player;
   }
 }
 .game__container {

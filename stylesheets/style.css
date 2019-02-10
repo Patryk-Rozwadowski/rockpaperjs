@@ -10,7 +10,7 @@ header .header__title { font-family: 'ZCOOL KuaiLe', cursive; font-size: 3em; }
 
 header .col-6 { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; }
 
-header .score, header .score__whowin, header .score__comp, header .score__player { width: 200px; height: 50px; background-color: #fff; color: #222; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; }
+header .score, header .score__whowin, header .score__comp, header .scoreleft__comp, header .score__player, header .scoreleft__player { width: 200px; height: 50px; background-color: #fff; color: #222; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; text-align: center; }
 
 header .score__whowin { color: #222; }
 

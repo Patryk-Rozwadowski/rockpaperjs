@@ -17,6 +17,7 @@ var compScore = true;
 var playerRoundLefToWin;
 var compRoundLefToWin;
 
+
 var playerPickRock = document.getElementById("player1Rock");
 var playerPickScissors = document.getElementById("player1Scissors");
 var playerPickPaper = document.getElementById("player1Paper");
@@ -43,6 +44,8 @@ var startNewGame = document.getElementById("StartButton");
   compOutput.innerHTML =  compScore;
 
   roundCount = window.prompt("Podaj ilość rund");
+  playerRoundLefToWin = roundCount;
+  compRoundLefToWin = roundCount;
 
   compRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + roundCount + " punktów!";
   playerRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + roundCount + " punktów!";
@@ -53,27 +56,28 @@ var startNewGame = document.getElementById("StartButton");
 ////////////////////////////////////////
   function playerPick(playerPick, comp,) {
   var comp = compMove();
+
   if (playerPick == comp) {
     scoreOutput.innerHTML = "Draw";
 
     compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + roundCount + " aby wygrać";
-    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź jeszcze" + roundCount + " aby wygrać";
+    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź jeszcze " + roundCount + " aby wygrać";
   }
   else if (playerPick == 'rock' && comp == 'paper' || playerPick == "scissors" && comp == "rock" || playerPick == "rock" && comp == "paper") {
     compScore++;
     scoreOutput.innerHTML = "Wygrywa komputer";
     compOutput.innerHTML = "Komputer: " + compScore;
 
-    roundCount--;
-    compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + roundCount + " aby wygrać";
+    compRoundLefToWin--;
+    compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + compRoundLefToWin + " aby wygrać";
   }
   else {
     playerScore++;
     scoreOutput.innerHTML = "Wygrywa gracz";
     playerOutput.innerHTML = "Gracz: " + playerScore;
 
-    roundCount--;
-    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź " + roundCount + " aby wygrać";
+    playerRoundLefToWin--;
+    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź " + playerRoundLefToWin + " aby wygrać";
   }
   won();
 };
@@ -113,8 +117,7 @@ var startNewGame = document.getElementById("StartButton");
     playerPickPaper.addEventListener('click', function() {
       playerPick = endGame;
     });
-
-}
+  }
 };
 /////////////////////////////////
 // Deklaracja ruchu gracza /////

@@ -60,8 +60,8 @@ var startNewGame = document.getElementById("StartButton");
   if (playerPick == comp) {
     scoreOutput.innerHTML = "Draw";
 
-    compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + roundCount + " aby wygrać";
-    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź jeszcze " + roundCount + " aby wygrać";
+    playerOutput.innerHTML = playerScore;
+    compOutput.innerHTML = compScore;
   }
   else if (playerPick == 'rock' && comp == 'paper' || playerPick == "scissors" && comp == "rock" || playerPick == "rock" && comp == "paper") {
     compScore++;
@@ -90,34 +90,24 @@ var startNewGame = document.getElementById("StartButton");
   if (playerScore == roundCount ) {
 
     alert("Wygrałeś! :) Aby zagrać jeszcze raz kliknij w Start new game!");
-    playerPickRock.addEventListener('click', function() {
-      playerPick = endGame;
-    });
 
-    playerPickScissors.addEventListener('click', function(){
-      playerPick = endGame;
-    });
+    playerPickRock.addEventListener('click',  endGame);
 
-    playerPickPaper.addEventListener('click', function() {
-      playerPick = endGame;
-    });
+    playerPickScissors.addEventListener('click',  endGame);
+
+    playerPickPaper.addEventListener('click',  endGame);
   }
   else if (compScore == roundCount ) {
 
     alert("Przegrałeś :( Aby zagrać jeszcze raz kliknij w Start new game! ");
 
-    playerPickRock.addEventListener('click', function() {
-      playerPick = endGame;
-    });
+    playerPickRock.addEventListener('click', endGame);
 
-    playerPickScissors.addEventListener('click', function(){
-      playerPick = endGame;
-    });
 
-    playerPickPaper.addEventListener('click', function() {
-      playerPick = endGame;
-    });
-  }
+    playerPickScissors.addEventListener('click',  endGame);
+
+    playerPickPaper.addEventListener('click', endGame);
+  };
 };
 /////////////////////////////////
 // Deklaracja ruchu gracza /////

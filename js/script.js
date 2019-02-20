@@ -25,12 +25,6 @@ var startNewGame = document.getElementById("StartButton");
 
 
 
-/////////////////////////////////////
-// Ile rund brakuje aby wygrać mecz //
-/////////////////////////////////////
-
-
-
 /////////////////////////////////////////////
 // START GAME / RESETOWANIE WYNIKU ////////
 //////////////////////////////////////////////
@@ -90,23 +84,15 @@ var startNewGame = document.getElementById("StartButton");
   if (playerScore == roundCount ) {
 
     alert("Wygrałeś! :) Aby zagrać jeszcze raz kliknij w Start new game!");
-
-    playerPickRock.addEventListener('click',  endGame);
-
-    playerPickScissors.addEventListener('click',  endGame);
-
-    playerPickPaper.addEventListener('click',  endGame);
+    playerPickRock.disabled = true;
+    playerPickScissors.disabled = true;
+    playerPickPaper.disabled = true;
   }
   else if (compScore == roundCount ) {
-
     alert("Przegrałeś :( Aby zagrać jeszcze raz kliknij w Start new game! ");
-
-    playerPickRock.addEventListener('click', endGame);
-
-
-    playerPickScissors.addEventListener('click',  endGame);
-
-    playerPickPaper.addEventListener('click', endGame);
+    playerPickRock.disabled = true;
+    playerPickScissors.disabled = true;
+    playerPickPaper.disabled = true;
   };
 };
 /////////////////////////////////

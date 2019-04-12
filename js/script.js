@@ -28,7 +28,7 @@ const compOutputChoose = document.getElementById('computer__pick');
   }
 
   for (let i = 0; i < playerMoveButton.length; i++){
-    playerMoveButton[i].disabled = false;
+    playerMoveButton[i].disabled = true;
   };
 
 startNewGame.addEventListener('click', function(event) {
@@ -51,9 +51,8 @@ startNewGame.addEventListener('click', function(event) {
   }
 });
 
-function gameDecide(playerTurn){
+function gameDecide(){
   if(params.endGame === false){
-    let computerPlay = params.computerOptions();
 
     if(params.playerScore >= params.roundCount){
       alert("Wygrałeś! :) Aby zagrać jeszcze raz kliknij w Start new game!");
@@ -75,32 +74,36 @@ function gameDecide(playerTurn){
 /////////////////////////////////////////
 //  Funkcja dotycząca kto zdobył punkt
 ////////////////////////////////////////
-const whoWon =  function(playerMove, compMove) {
-  compMove =  params.computerOptions();
+const whoWon =  function(playerMove) {
+  const  compMove =  params.computerOptions();
+
   for (let i = 0; i < playerMoveButton.length; i++){
       playerMove = playerMoveButton[i].getAttribute('data-move');
       playerOutputChoose.innerHTML = 'wybrałeś ' + playerMove;
-      compOutputChoose.innerHTML = 'komputer wybrałeś' + compMove;
+      compOutputChoose.innerHTML = 'komputer wybrał ' + compMove;
     };
 
   console.log(compMove);
-  console.log(playerMove)
+  console.log(playerMove);
 
   if (playerMove === compMove) {
     scoreOutput.innerHTML = "Draw";
-
-    playerOutput.innerHTML = params.playerScore;
-    compOutput.innerHTML = params.compScore;
+    compOutput.innerHTML = "Komputer: " + params.compScore;
+    playerOutput.innerHTML = "Gracz: " + params.playerScore;
   }
-  else if (playerMove === 'rock' && compMove === 'paper' || playerMove === "scissors" && compMove === "rock" || playerMove === "rock" && compMove === "paper") {
+  else if (compMove === 'paper' && playerMove === 'rock' ||
+          compMove === "scissors" && playerMove === "paper" ||
+          compMove === "rock" && playerMove === "scissors") {
     params.compScore++;
     scoreOutput.innerHTML = "Wygrywa komputer";
     compOutput.innerHTML = "Komputer: " + params.compScore;
 
     params.compRoundLefToWin--;
-    params.compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + params.compRoundLefToWin + " aby wygrać";
+    compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + params.compRoundLefToWin + " aby wygrać";
   }
-  else {
+  else if (playerMove === 'paper' && compMove === 'rock' ||
+          playerMove === 'scissors' && compMove === 'paper' ||
+          playerMove === 'rock' && compMove === 'scissors'){
     params.playerScore++;
     scoreOutput.innerHTML = "Wygrywa gracz";
     playerOutput.innerHTML = "Gracz: " + params.playerScore;
@@ -113,6 +116,7 @@ const whoWon =  function(playerMove, compMove) {
 for (let i = 0; i < playerMoveButton.length; i++){
     playerMoveButton[i].addEventListener('click', function(){
       whoWon(this);
+      gameDecide()
     });
   }
 

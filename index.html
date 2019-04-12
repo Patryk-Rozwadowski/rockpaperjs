@@ -17,11 +17,13 @@
       <div class="row">
         <div class="col-6">
           <div id="playerOutput" class="score__player">Gracz: </div>
-          <div id="PlayerRoundLeftOutput" class="scoreleft__player"></div>
+          <div id="playerRoundLeftOutput" class="scoreleft__player"></div>
+          <div id="player__pick"></div>
         </div>
         <div class="col-6">
           <div id="compOutput" class="score__comp">Komputer: </div>
-          <div id="CompRoundLeftOutput" class="scoreleft__comp"></div>
+          <div id="compRoundLeftOutput" class="scoreleft__comp"></div>
+          <div id="computer__pick"></div>
         </div>
       </div>
 
@@ -32,14 +34,13 @@
           <section class="player-1">
             <h1 class="player-1__name">Gracz 1</h1>
             <div class="choice">
-              <button id="player1Rock" class="stone-1">Kamień</button>
-              <button id="player1Scissors" class="scissors-1">Nożyczki</button>
-              <button id="player1Paper" class="paper-1">Papier</button>
+              <button class="player-move" data-move="rock">Kamień</button>
+              <button class="player-move" data-move="scissors">Nożyczki</button>
+              <button class="player-move" data-move="paper">Papier</button>
             </div>
           </section>
         </main>
       </div>
-        <!---->
       <div class="col-6">
         <main class="game__container">
           <section class="player-2">
@@ -56,7 +57,7 @@
     <!-- START NEW GAME -->
     <div class="row">
       <div id="StartGame" class="game__start">
-        <button id="StartButton" class="game__start__button">Start new game!</button>
+        <button id="startButton" class="game__start__button">Start new game!</button>
       </div>
     </div>
     <script src="js/script.js"></script>

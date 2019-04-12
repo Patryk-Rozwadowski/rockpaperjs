@@ -1,120 +1,153 @@
 'use strict';
+(function(){
+const scoreOutput = document.getElementById("output");
+const compOutput = document.getElementById("compOutput");
+const playerOutput = document.getElementById("playerOutput");
 
-var scoreOutput = document.getElementById("output");
-var compOutput = document.getElementById("compOutput");
-var playerOutput = document.getElementById("playerOutput");
-
-var playerRoundLeftoutput = document.getElementById("PlayerRoundLeftOutput");
-var compRoundLeftoutput = document.getElementById("CompRoundLeftOutput");
-
-
-
-var roundCount;
-var endGame = false;
-var playerScore = true;
-var compScore = true;
-
-var playerRoundLefToWin;
-var compRoundLefToWin;
-
-
-var playerPickRock = document.getElementById("player1Rock");
-var playerPickScissors = document.getElementById("player1Scissors");
-var playerPickPaper = document.getElementById("player1Paper");
-var startNewGame = document.getElementById("StartButton");
+const playerRoundLeftoutput = document.getElementById("playerRoundLeftOutput");
+const compRoundLeftoutput = document.getElementById("compRoundLeftOutput");
+const startNewGame = document.getElementById("startButton");
+const playerMoveButton = document.querySelectorAll('.player-move');
+const playerOutputChoose =  document.getElementById('player__pick');
+const compOutputChoose = document.getElementById('computer__pick');
 
 
 
-/////////////////////////////////////////////
-// START GAME / RESETOWANIE WYNIKU ////////
-//////////////////////////////////////////////
+  var params = {
+    roundCount: 0,
+    playerScore: 0,
+    compScore: 0,
+    playerRoundLefToWin: 0,
+    compRoundLefToWin:0,
+    progress: [],
+    endGame: false,
+    computerOptions: function() {
+      let compPick = ['rock', 'paper','scissors'];
+      return compPick[Math.floor(Math.random() * 3)];
+    }
+  }
 
-  startNewGame.addEventListener('click', function() {
+  for (let i = 0; i < playerMoveButton.length; i++){
+    playerMoveButton[i].disabled = false;
+  };
+
+startNewGame.addEventListener('click', function(event) {
+  params.roundCount = window.prompt("Podaj ilość rund");
+  if (isNaN(params.roundCount) || params.roundCount ===''){
+    alert('Podaną złą wartość');
+  }
+  else if (params.roundCount !== null){
+    params.playerScore = 0;
+    params.compScore = 0;
+    params.playerRoundLefToWin = params.roundCount;
+    params.compRoundLefToWin = params.roundCount;
+    params.endGame = false;
+    compRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + params.roundCount + " punktów!";
+    playerRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + params.roundCount + " punktów!";
+
+    for (let i = 0; i < playerMoveButton.length; i++){
+      playerMoveButton[i].disabled = false;
+    }
+  }
+});
+
+function gameDecide(playerTurn){
+  if(params.endGame === false){
+    let computerPlay = params.computerOptions();
+
+    if(params.playerScore >= params.roundCount){
+      alert("Wygrałeś! :) Aby zagrać jeszcze raz kliknij w Start new game!");
+      for (let i = 0; i < playerMoveButton.length; i++){
+        playerMoveButton[i].disabled = true;
+      }
+    }
+    else if (params.compScore >= params.roundCount){
+      alert("Przegrałeś :( Aby zagrać jeszcze raz kliknij w Start new game! ");
+      for (let i = 0; i < playerMoveButton.length; i++){
+        playerMoveButton[i].disabled = true;
+      };
+    }
+  }
+  else {
+    alert('Gra skończona');
+  }
+}
+/////////////////////////////////////////
+//  Funkcja dotycząca kto zdobył punkt
+////////////////////////////////////////
+const whoWon =  function(playerMove, compMove) {
+  compMove =  params.computerOptions();
+  for (let i = 0; i < playerMoveButton.length; i++){
+      playerMove = playerMoveButton[i].getAttribute('data-move');
+      playerOutputChoose.innerHTML = 'wybrałeś ' + playerMove;
+      compOutputChoose.innerHTML = 'komputer wybrałeś' + compMove;
+    };
+
+  console.log(compMove);
+  console.log(playerMove)
+
+  if (playerMove === compMove) {
+    scoreOutput.innerHTML = "Draw";
+
+    playerOutput.innerHTML = params.playerScore;
+    compOutput.innerHTML = params.compScore;
+  }
+  else if (playerMove === 'rock' && compMove === 'paper' || playerMove === "scissors" && compMove === "rock" || playerMove === "rock" && compMove === "paper") {
+    params.compScore++;
+    scoreOutput.innerHTML = "Wygrywa komputer";
+    compOutput.innerHTML = "Komputer: " + params.compScore;
+
+    params.compRoundLefToWin--;
+    params.compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + params.compRoundLefToWin + " aby wygrać";
+  }
+  else {
+    params.playerScore++;
+    scoreOutput.innerHTML = "Wygrywa gracz";
+    playerOutput.innerHTML = "Gracz: " + params.playerScore;
+
+    params.playerRoundLefToWin--;
+    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź " + params.playerRoundLefToWin + " aby wygrać";
+  };
+};
+
+for (let i = 0; i < playerMoveButton.length; i++){
+    playerMoveButton[i].addEventListener('click', function(){
+      whoWon(this);
+    });
+  }
+
+
+/*startNewGame.addEventListener('click', function() {
   playerScore = 0;
   compScore = 0;
-
-
   playerOutput.innerHTML = playerScore;
   compOutput.innerHTML =  compScore;
 
   roundCount = window.prompt("Podaj ilość rund");
+  if (roundCount = isNaN){
+    window.prompt('Podaną złą wartość');
+    for (let i = 0; i < playerMoveButton.length; i++){
+      playerMoveButton[i].disabled = false;
+    }
+  }
+  else if ( roundcount = ''){
+    window.prompt('Nie podano ilości rund');
+
+  }
   playerRoundLefToWin = roundCount;
   compRoundLefToWin = roundCount;
 
   compRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + roundCount + " punktów!";
   playerRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + roundCount + " punktów!";
-  won();
-});
-/////////////////////////////////////////
-//  Funkcja dotycząca kto zdobył punkt  + funkcja na to kto wygral mecz//
-////////////////////////////////////////
-  function playerPick(playerPick, comp,) {
-  var comp = compMove();
 
-  if (playerPick == comp) {
-    scoreOutput.innerHTML = "Draw";
-
-    playerOutput.innerHTML = playerScore;
-    compOutput.innerHTML = compScore;
+  for (let i = 0; i < playerMoveButton.length; i++){
+    playerMoveButton[i].disabled = false;
   }
-  else if (playerPick == 'rock' && comp == 'paper' || playerPick == "scissors" && comp == "rock" || playerPick == "rock" && comp == "paper") {
-    compScore++;
-    scoreOutput.innerHTML = "Wygrywa komputer";
-    compOutput.innerHTML = "Komputer: " + compScore;
-
-    compRoundLefToWin--;
-    compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + compRoundLefToWin + " aby wygrać";
-  }
-  else {
-    playerScore++;
-    scoreOutput.innerHTML = "Wygrywa gracz";
-    playerOutput.innerHTML = "Gracz: " + playerScore;
-
-    playerRoundLefToWin--;
-    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź " + playerRoundLefToWin + " aby wygrać";
-  }
-  won();
-};
-
-
-//////////////////////////////
-//  Funkcja dotycząca kto wygrał mecz //
-//////////////////////////////
-  function won(playerPick) {
-  if (playerScore == roundCount ) {
-
-    alert("Wygrałeś! :) Aby zagrać jeszcze raz kliknij w Start new game!");
-    playerPickRock.disabled = true;
-    playerPickScissors.disabled = true;
-    playerPickPaper.disabled = true;
-  }
-  else if (compScore == roundCount ) {
-    alert("Przegrałeś :( Aby zagrać jeszcze raz kliknij w Start new game! ");
-    playerPickRock.disabled = true;
-    playerPickScissors.disabled = true;
-    playerPickPaper.disabled = true;
-  };
-};
-/////////////////////////////////
-// Deklaracja ruchu gracza /////
-/////////////////////////////////
-
-playerPickRock.addEventListener('click', function() {
-  playerPick('rock');
+  for (let i = 0; i < playerMoveButton.length; i++){
+      playerMoveButton[i].addEventListener('click', function(){
+        playerPick(this);
+      });
+    }
 });
-
-playerPickScissors.addEventListener('click', function(){
-  playerPick('scissors');
-});
-
-playerPickPaper.addEventListener('click', function() {
-  playerPick('paper');
-});
-
-///////////////////////////////
-// Losuje ruch dla komputerar ///
-//////////////////////////////
-function compMove() {
-  var compPick = ['rock', 'paper','scissors'];
-  return compPick[Math.floor(Math.random() * 3)];
-};
+*/
+}());

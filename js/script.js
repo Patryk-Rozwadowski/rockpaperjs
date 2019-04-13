@@ -11,7 +11,15 @@ const playerMoveButton = document.querySelectorAll('.player-move');
 const playerOutputChoose =  document.getElementById('player__pick');
 const compOutputChoose = document.getElementById('computer__pick');
 
+const modals = document.querySelectorAll('modal');
+const modalOverlay = document.querySelectorAll('overlay');
+const modalGameOver = document.getElementById('modal-endgame');
+const modalGameResult = document.getElementById('modal-gameresult');
 
+for (let i = 0; i < modals.length; i++) {
+  let modal = modals[i];
+  modal.classList.remove('show');
+}
 
   var params = {
     roundCount: 0,
@@ -52,8 +60,8 @@ startNewGame.addEventListener('click', function(event) {
 });
 
 function gameDecide(){
-  if(params.endGame === false){
-
+  if(params.playerScore >= params.roundCount){
+    params.endGame = true;
     if(params.playerScore >= params.roundCount){
       alert("Wygrałeś! :) Aby zagrać jeszcze raz kliknij w Start new game!");
       for (let i = 0; i < playerMoveButton.length; i++){
@@ -68,9 +76,9 @@ function gameDecide(){
     }
   }
   else {
-    alert('Gra skończona');
+    modalGameover.classList.add('show');
   }
-}
+};
 /////////////////////////////////////////
 //  Funkcja dotycząca kto zdobył punkt
 ////////////////////////////////////////
@@ -78,25 +86,25 @@ const whoWon =  function(playerMove) {
   const  compMove =  params.computerOptions();
 
   for (let i = 0; i < playerMoveButton.length; i++){
-      playerMove = playerMoveButton[i].getAttribute('data-move');
-      playerOutputChoose.innerHTML = 'wybrałeś ' + playerMove;
-      compOutputChoose.innerHTML = 'komputer wybrał ' + compMove;
-    };
+    playerMove = playerMoveButton[i].getAttribute('data-move');
+    playerOutputChoose.innerHTML = 'wybrałeś ' + playerMove;
+    compOutputChoose.innerHTML = 'komputer wybrał ' + compMove;
+  };
 
   console.log(compMove);
   console.log(playerMove);
 
   if (playerMove === compMove) {
-    scoreOutput.innerHTML = "Draw";
-    compOutput.innerHTML = "Komputer: " + params.compScore;
-    playerOutput.innerHTML = "Gracz: " + params.playerScore;
+    scoreOutput.innerHTML = 'Draw';
+    compOutput.innerHTML = 'Komputer: ' + params.compScore;
+    playerOutput.innerHTML = 'Gracz: ' + params.playerScore;
   }
   else if (compMove === 'paper' && playerMove === 'rock' ||
-          compMove === "scissors" && playerMove === "paper" ||
-          compMove === "rock" && playerMove === "scissors") {
+          compMove === 'scissors' && playerMove === 'paper' ||
+          compMove === 'rock' && playerMove === 'scissors') {
     params.compScore++;
-    scoreOutput.innerHTML = "Wygrywa komputer";
-    compOutput.innerHTML = "Komputer: " + params.compScore;
+    scoreOutput.innerHTML = 'Wygrywa komputer';
+    compOutput.innerHTML = 'Komputer: ' + params.compScore;
 
     params.compRoundLefToWin--;
     compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + params.compRoundLefToWin + " aby wygrać";
@@ -105,11 +113,11 @@ const whoWon =  function(playerMove) {
           playerMove === 'scissors' && compMove === 'paper' ||
           playerMove === 'rock' && compMove === 'scissors'){
     params.playerScore++;
-    scoreOutput.innerHTML = "Wygrywa gracz";
-    playerOutput.innerHTML = "Gracz: " + params.playerScore;
+    scoreOutput.innerHTML = 'Wygrywa gracz';
+    playerOutput.innerHTML = 'Gracz: ' + params.playerScore;
 
     params.playerRoundLefToWin--;
-    playerRoundLeftoutput.innerHTML = "<br><br> Zdobądź " + params.playerRoundLefToWin + " aby wygrać";
+    playerRoundLeftoutput.innerHTML = '<br><br> Zdobądź ' + params.playerRoundLefToWin + ' aby wygrać';
   };
 };
 
@@ -119,39 +127,4 @@ for (let i = 0; i < playerMoveButton.length; i++){
       gameDecide()
     });
   }
-
-
-/*startNewGame.addEventListener('click', function() {
-  playerScore = 0;
-  compScore = 0;
-  playerOutput.innerHTML = playerScore;
-  compOutput.innerHTML =  compScore;
-
-  roundCount = window.prompt("Podaj ilość rund");
-  if (roundCount = isNaN){
-    window.prompt('Podaną złą wartość');
-    for (let i = 0; i < playerMoveButton.length; i++){
-      playerMoveButton[i].disabled = false;
-    }
-  }
-  else if ( roundcount = ''){
-    window.prompt('Nie podano ilości rund');
-
-  }
-  playerRoundLefToWin = roundCount;
-  compRoundLefToWin = roundCount;
-
-  compRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + roundCount + " punktów!";
-  playerRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + roundCount + " punktów!";
-
-  for (let i = 0; i < playerMoveButton.length; i++){
-    playerMoveButton[i].disabled = false;
-  }
-  for (let i = 0; i < playerMoveButton.length; i++){
-      playerMoveButton[i].addEventListener('click', function(){
-        playerPick(this);
-      });
-    }
-});
-*/
 }());

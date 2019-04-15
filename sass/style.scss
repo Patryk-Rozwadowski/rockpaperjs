@@ -132,6 +132,7 @@ header {
 }
 .modal {
   display: none;
+  position:relative;
   background: #fff;
   width: 40%;
   position: absolute;
@@ -146,5 +147,32 @@ header {
 
   &.show {
     display: block;
+  }
+
+  #winner {
+    color:#222;
+  }
+
+  table {
+    width:100%;
+  }
+  th {
+    color:#222;
+  }
+
+  .close {
+    transform:rotate(45deg);
+    font-weight: bold;
+    font-size:1.5em;
+    transition:font-size 1s;
+    color:#222;
+    position:absolute;
+    right:5px;
+    top:5px;
+
+    &:hover {
+      font-size:1.6em;
+      cursor:pointer;
+    }
   }
 }

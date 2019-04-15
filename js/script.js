@@ -11,15 +11,23 @@ const playerMoveButton = document.querySelectorAll('.player-move');
 const playerOutputChoose =  document.getElementById('player__pick');
 const compOutputChoose = document.getElementById('computer__pick');
 
-const modals = document.querySelectorAll('modal');
-const modalOverlay = document.querySelectorAll('overlay');
+const modals = document.querySelectorAll('.modal');
+const modalOverlay = document.querySelector('.overlay');
 const modalGameOver = document.getElementById('modal-endgame');
-const modalGameResult = document.getElementById('modal-gameresult');
+
+const closeButtons = document.querySelectorAll('.modal .close');
+const resultTable = document.querySelector('table tbody');
 
 for (let i = 0; i < modals.length; i++) {
   let modal = modals[i];
   modal.classList.remove('show');
 }
+
+for(let i = 0; i < modals.length; i++){
+  modals[i].addEventListener('click', function(event){
+    event.stopPropagation();
+  });
+};
 
   var params = {
     roundCount: 0,
@@ -29,6 +37,7 @@ for (let i = 0; i < modals.length; i++) {
     compRoundLefToWin:0,
     progress: [],
     endGame: false,
+    roundWinner: '';
     computerOptions: function() {
       let compPick = ['rock', 'paper','scissors'];
       return compPick[Math.floor(Math.random() * 3)];
@@ -39,17 +48,38 @@ for (let i = 0; i < modals.length; i++) {
     playerMoveButton[i].disabled = true;
   };
 
+function showModal(winner) {
+  winnerIs.innerHTML = 'Wygrywa ' + winner;
+  modalOverlay.classList.add('show');
+  modalGameOver.classList.add('show');
+  resultTable.innerHTML = generateProgressTable();
+}
+
+function hideModal(event){
+  event.stopPropagation();
+  modalOverlay.classList.remove('show');
+};
+
+for(let i = 0; i < closeButtons.length; i++){
+  closeButtons[i].addEventListener('click', hideModal);
+};
+
+modalOverlay.addEventListener('click', hideModal);
+
+
 startNewGame.addEventListener('click', function(event) {
   params.roundCount = window.prompt("Podaj ilość rund");
   if (isNaN(params.roundCount) || params.roundCount ===''){
     alert('Podaną złą wartość');
   }
-  else if (params.roundCount !== null){
+  else {
     params.playerScore = 0;
     params.compScore = 0;
     params.playerRoundLefToWin = params.roundCount;
     params.compRoundLefToWin = params.roundCount;
     params.endGame = false;
+    result.innerHTML = params.winsPlayer + '-' + params.winsComputer;
+
     compRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + params.roundCount + " punktów!";
     playerRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + params.roundCount + " punktów!";
 
@@ -59,29 +89,40 @@ startNewGame.addEventListener('click', function(event) {
   }
 });
 
+function roundInfo (playerChoice, computerChoice) {
+  params.progress.push({
+    player_movement : playerChoice,
+    computer_movement : computerChoice,
+    round_winner : params.roundWinner,
+    round_result : params.winsPlayer + ':' + params.winsComputer
+  });
+};
+
+var generateProgressTable = function() {
+  var tbody = '';
+  params.progress.forEach(function(round, index) {
+    tbody += '<tr><td> ' + index + '</td><td> ' + round.player_movement + '</td><td> ' + round.computer_movement + '</td><td> ' + round.round_winner + '</td><td> ' + round.round_result + '</td></tr>'
+  });
+  params.progress = [] ;
+  return tbody;
+};
+
 function gameDecide(){
   if(params.playerScore >= params.roundCount){
-    params.endGame = true;
-    if(params.playerScore >= params.roundCount){
-      alert("Wygrałeś! :) Aby zagrać jeszcze raz kliknij w Start new game!");
-      for (let i = 0; i < playerMoveButton.length; i++){
-        playerMoveButton[i].disabled = true;
-      }
-    }
-    else if (params.compScore >= params.roundCount){
-      alert("Przegrałeś :( Aby zagrać jeszcze raz kliknij w Start new game! ");
-      for (let i = 0; i < playerMoveButton.length; i++){
-        playerMoveButton[i].disabled = true;
-      };
+    showModal('gracz');
+    for (let i = 0; i < playerMoveButton.length; i++){
+      playerMoveButton[i].disabled = true;
     }
   }
-  else {
-    modalGameover.classList.add('show');
+  else if (params.compScore >= params.roundCount){
+    showModal('komputer');
+    winnerIs.innerHTML = 'Wygrywa komputer!'
+    for (let i = 0; i < playerMoveButton.length; i++){
+      playerMoveButton[i].disabled = true;
+    };
   }
 };
-/////////////////////////////////////////
-//  Funkcja dotycząca kto zdobył punkt
-////////////////////////////////////////
+
 const whoWon =  function(playerMove) {
   const  compMove =  params.computerOptions();
 
@@ -96,13 +137,12 @@ const whoWon =  function(playerMove) {
 
   if (playerMove === compMove) {
     scoreOutput.innerHTML = 'Draw';
-    compOutput.innerHTML = 'Komputer: ' + params.compScore;
-    playerOutput.innerHTML = 'Gracz: ' + params.playerScore;
   }
   else if (compMove === 'paper' && playerMove === 'rock' ||
           compMove === 'scissors' && playerMove === 'paper' ||
           compMove === 'rock' && playerMove === 'scissors') {
     params.compScore++;
+    params.roundWinner = 'Gracz'
     scoreOutput.innerHTML = 'Wygrywa komputer';
     compOutput.innerHTML = 'Komputer: ' + params.compScore;
 
@@ -113,6 +153,7 @@ const whoWon =  function(playerMove) {
           playerMove === 'scissors' && compMove === 'paper' ||
           playerMove === 'rock' && compMove === 'scissors'){
     params.playerScore++;
+    params.roundWinner = 'Komputer'
     scoreOutput.innerHTML = 'Wygrywa gracz';
     playerOutput.innerHTML = 'Gracz: ' + params.playerScore;
 

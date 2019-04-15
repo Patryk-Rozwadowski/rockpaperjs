@@ -34,8 +34,18 @@ header .score__whowin { color: #222; }
 
 .overlay.show { display: block; }
 
-.modal { display: none; background: #fff; width: 40%; position: absolute; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0); }
+.modal { display: none; position: relative; background: #fff; width: 40%; position: absolute; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0); }
 
 .modal .modal-header { color: #222; font-size: 2em; }
 
 .modal.show { display: block; }
+
+.modal #winner { color: #222; }
+
+.modal table { width: 100%; }
+
+.modal th { color: #222; }
+
+.modal .close { transform: rotate(45deg); font-weight: bold; font-size: 1.5em; transition: font-size 1s; color: #222; position: absolute; right: 5px; top: 5px; }
+
+.modal .close:hover { font-size: 1.6em; cursor: pointer; }

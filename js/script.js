@@ -14,6 +14,7 @@ const compOutputChoose = document.getElementById('computer__pick');
 const modals = document.querySelectorAll('.modal');
 const modalOverlay = document.querySelector('.overlay');
 const modalGameOver = document.getElementById('modal-endgame');
+const winnerIs = document.getElementById('winner');
 
 const closeButtons = document.querySelectorAll('.modal .close');
 const resultTable = document.querySelector('table tbody');
@@ -37,7 +38,7 @@ for(let i = 0; i < modals.length; i++){
     compRoundLefToWin:0,
     progress: [],
     endGame: false,
-    roundWinner: '';
+    roundWinner: '',
     computerOptions: function() {
       let compPick = ['rock', 'paper','scissors'];
       return compPick[Math.floor(Math.random() * 3)];
@@ -78,7 +79,6 @@ startNewGame.addEventListener('click', function(event) {
     params.playerRoundLefToWin = params.roundCount;
     params.compRoundLefToWin = params.roundCount;
     params.endGame = false;
-    result.innerHTML = params.winsPlayer + '-' + params.winsComputer;
 
     compRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + params.roundCount + " punktów!";
     playerRoundLeftoutput.innerHTML = "Nowa gra rozpoczęta! " + "<br><br> Aby wygrać mecz zdobądź: " + params.roundCount + " punktów!";
@@ -94,7 +94,7 @@ function roundInfo (playerChoice, computerChoice) {
     player_movement : playerChoice,
     computer_movement : computerChoice,
     round_winner : params.roundWinner,
-    round_result : params.winsPlayer + ':' + params.winsComputer
+    round_result : params.playerScore + '-' + params.compScore,
   });
 };
 
@@ -148,6 +148,7 @@ const whoWon =  function(playerMove) {
 
     params.compRoundLefToWin--;
     compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + params.compRoundLefToWin + " aby wygrać";
+    roundInfo(playerMove, compMove);
   }
   else if (playerMove === 'paper' && compMove === 'rock' ||
           playerMove === 'scissors' && compMove === 'paper' ||
@@ -159,6 +160,7 @@ const whoWon =  function(playerMove) {
 
     params.playerRoundLefToWin--;
     playerRoundLeftoutput.innerHTML = '<br><br> Zdobądź ' + params.playerRoundLefToWin + ' aby wygrać';
+    roundInfo(playerMove, compMove);
   };
 };
 

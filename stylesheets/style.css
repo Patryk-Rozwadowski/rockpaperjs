@@ -49,3 +49,5 @@ header .score__whowin { color: #222; }
 .modal .close { transform: rotate(45deg); font-weight: bold; font-size: 1.5em; transition: font-size 1s; color: #222; position: absolute; right: 5px; top: 5px; }
 
 .modal .close:hover { font-size: 1.6em; cursor: pointer; }
+
+.modal tbody { color: #222; width: 100%; text-align: center; }

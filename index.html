@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
     <title>Kamien papier nozyce!</title>
     <link rel="stylesheet" href="stylesheets/style.css">
   </head>
@@ -32,11 +34,12 @@
       <div class="col-6">
         <div class="game__container">
           <section class="player-1">
-            <h1 class="player-1__name">Gracz 1</h1>
+            <i class="fas fa-male"></i>
+            <h1 class="player-1__name section-header">Gracz 1</h1>
             <div class="choice">
-              <button class="player-move" data-move="rock">Kamień</button>
-              <button class="player-move" data-move="scissors">Nożyczki</button>
-              <button class="player-move" data-move="paper">Papier</button>
+              <button class="player-move stone flex-center" data-move="rock"><i class="far fa-hand-rock"></i>Kamień</button>
+              <button class="player-move scissors flex-center" data-move="scissors"><i class="far fa-hand-scissors"></i>Nożyczki</button>
+              <button class="player-move paper flex-center" data-move="paper"><i class="far fa-hand-paper"></i>Papier</button>
             </div>
           </section>
         </div>
@@ -44,11 +47,13 @@
       <div class="col-6">
         <div class="game__container">
           <section class="player-2">
-            <h1 class="player-2__name">Komputer</h1>
+            <i class="fas fa-laptop"></i>
+            <h1 class="player-2__name section-header">Komputer</h1>
             <div class="choice">
-              <div class="stone-2">Kamień</div>
-              <div class="scissors-2">Nożyczki</div>
-              <div class="paper-2">Papier</div>
+              <button class="player-move stone-computer flex-center"><i class="far fa-hand-rock"></i>Kamień</button>
+              <button class="player-move scissors-computer flex-center"><i class="far fa-hand-scissors"></i>Nożyczki</button>
+              <button class="player-move paper-computer flex-center"><i class="far fa-hand-paper"></i>Papier</button>
+
             </div>
           </section>
         </div>

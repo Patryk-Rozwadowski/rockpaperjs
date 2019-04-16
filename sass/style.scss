@@ -40,17 +40,22 @@ header {
     @extend .score;
     color:#222;
   }
-  .score__comp {
-    @extend .score;
-  }
-  .scoreleft__comp {
-    @extend .score__comp;
-  }
+  .score__comp,
   .score__player {
-    @extend .score;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color:#fff;
   }
+  .scoreleft__comp,
   .scoreleft__player {
-    @extend .score__player;
+    background-color:#fff;
+    margin-top:20px;
+    padding-top:20px;
+    width:500px;
+    height:100px;
+    color:#222;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
   }
 }
 .game__container {
@@ -61,22 +66,14 @@ header {
   .player-1 {
     text-align: center;
   }
-
-  .stone-1 {
-    width:200px;
-    height:50px;
-    background-color:#2e5266;
-    @include flex-center;
-    margin:20px;
-    border-radius:10%;
+  
+  .section-header {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
   }
 
-  .scissors-1 {
-    @extend .stone-1;
-  }
-
-  .paper-1 {
-    @extend .stone-1;
+  .fas {
+    font-size:2em;
   }
 }
 .player-2 {
@@ -84,27 +81,58 @@ header {
 }
 .choice {
   width:100%;
-  @include flex-center ;
   flex-direction: row;
 }
-.stone-2 {
-  @include flex-center;
-  color:#222;
-  border-radius:10%;
+.stone{
+  color:#fff;
+  margin-left:15px;
+  border-radius:2px;
   width:200px;
   height:50px;
-  background-color: #d3d0cb;
+  background-color: #222;
   margin:20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  border:1px solid #fff;
+  transition: all 500ms;
 
+  &:hover {
+    cursor:pointer;
+    box-shadow: 1px 1px 10px #fff;
+  }
 }
-.scissors-2 {
-  @extend .stone-2;
+.scissors {
+  @extend .stone;
 }
 
-.paper-2 {
-  @extend .stone-2;
+.paper {
+  @extend .stone;
+}
+.stone-computer {
+  color:#fff;
+  margin-left:15px;
+  border-radius:2px;
+  width:200px;
+  height:50px;
+  background-color: #222;
+  margin:20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  border:1px solid #fff;
+}
+.scissors-computer {
+  @extend .stone-computer;
+}
+.paper-computer {
+  @extend .stone-computer;
+}
+.far {
+  margin-right:15px;
 }
 
+.computer-options {
+  margin-right:50px;
+}
 .game__start {
   @include flex-center;
 

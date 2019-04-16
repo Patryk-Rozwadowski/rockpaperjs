@@ -123,24 +123,18 @@ function gameDecide(){
   }
 };
 
-const whoWon =  function(playerMove) {
+function whoWon(playerMove) {
   const  compMove =  params.computerOptions();
-
-  for (let i = 0; i < playerMoveButton.length; i++){
-    playerMove = playerMoveButton[i].getAttribute('data-move');
-    playerOutputChoose.innerHTML = 'wybrałeś ' + playerMove;
-    compOutputChoose.innerHTML = 'komputer wybrał ' + compMove;
-  };
-
+  const playerTurn = playerMove.getAttribute('data-move');
   console.log(compMove);
-  console.log(playerMove);
+  console.log(playerTurn);
 
   if (playerMove === compMove) {
     scoreOutput.innerHTML = 'Draw';
   }
-  else if (compMove === 'paper' && playerMove === 'rock' ||
-          compMove === 'scissors' && playerMove === 'paper' ||
-          compMove === 'rock' && playerMove === 'scissors') {
+  else if (compMove === 'paper' && playerTurn === 'rock' ||
+          compMove === 'scissors' && playerTurn === 'paper' ||
+          compMove === 'rock' && playerTurn === 'scissors') {
     params.compScore++;
     params.roundWinner = 'Gracz'
     scoreOutput.innerHTML = 'Wygrywa komputer';
@@ -148,11 +142,11 @@ const whoWon =  function(playerMove) {
 
     params.compRoundLefToWin--;
     compRoundLeftoutput.innerHTML = "<br><br> Punkty  " + params.compRoundLefToWin + " aby wygrać";
-    roundInfo(playerMove, compMove);
+    roundInfo(playerTurn, compMove);
   }
-  else if (playerMove === 'paper' && compMove === 'rock' ||
-          playerMove === 'scissors' && compMove === 'paper' ||
-          playerMove === 'rock' && compMove === 'scissors'){
+  else if (playerTurn === 'paper' && compMove === 'rock' ||
+          playerTurn === 'scissors' && compMove === 'paper' ||
+          playerTurn === 'rock' && compMove === 'scissors'){
     params.playerScore++;
     params.roundWinner = 'Komputer'
     scoreOutput.innerHTML = 'Wygrywa gracz';
@@ -160,14 +154,17 @@ const whoWon =  function(playerMove) {
 
     params.playerRoundLefToWin--;
     playerRoundLeftoutput.innerHTML = '<br><br> Zdobądź ' + params.playerRoundLefToWin + ' aby wygrać';
-    roundInfo(playerMove, compMove);
+    roundInfo(playerTurn, compMove);
   };
 };
 
 for (let i = 0; i < playerMoveButton.length; i++){
     playerMoveButton[i].addEventListener('click', function(){
       whoWon(this);
-      gameDecide()
+      gameDecide();
+
+      const playerPick = this.getAttribute('data-move');
+      playerOutputChoose.innerHTML = 'wybrałeś ' + playerPick;
     });
   }
 }());

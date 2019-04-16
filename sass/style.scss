@@ -66,7 +66,7 @@ header {
   .player-1 {
     text-align: center;
   }
-  
+
   .section-header {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
@@ -139,9 +139,20 @@ header {
   .game__start__button {
     width:300px;
     height:200px;
-    background-color: #2e5266;
-    color:#fff;
+    background-color: #fff;
+    color:#222;
     font-size:3em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    border:1px solid #222;
+    transition: all 500ms;
+
+    &:hover {
+      color:#fff;
+      background-color:#222;
+      border:1px solid #fff;
+      cursor:pointer;
+    }
   }
 }
 
